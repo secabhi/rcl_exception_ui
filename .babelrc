@@ -1,0 +1,29 @@
+{
+    "presets": [
+        ["es2015", { "modules": false }],
+        "stage-2",
+        "react"
+    ],
+    "plugins": [
+        "transform-class-properties",
+        "transform-decorators-legacy",
+        "transform-object-rest-spread",
+        "transform-react-jsx",
+        "transform-runtime",
+        "webpack-alias",
+        ["babel-root-slash-import", {
+            "rootPathSuffix": "src"
+        }]
+    ],
+    "env":{
+        "test":{
+            "presets":["env"]
+        },
+
+        "dev": {
+            "plugins": [
+                "react-hot-loader/babel"
+            ]
+        }
+    }
+}

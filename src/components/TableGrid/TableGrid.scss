@@ -1,0 +1,26 @@
+.TableGrid{
+	margin-bottom: 10px;
+	.ReactTable{
+		.rt-table{
+			.rt-thead{
+				background-color: #EEEEEE;
+				&.-header{
+					padding-top: 10px;
+					.rt-tr{
+						.rt-th{
+							padding-bottom: 0px;
+						}
+					}
+				}
+				&.-filters{
+					padding-bottom: 10px;
+					.rt-tr{
+						.rt-th{
+							padding-top: 0px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

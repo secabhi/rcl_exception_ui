@@ -8,16 +8,19 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: 'babel',
         query: {
           presets: ['react', 'es2015', 'stage-1']
         }
       },
       {
-        test: /\.css$/,
-        loader: "style-loader!css-loader" 
+          test: /\.scss$/,
+          loader: "style-loader!css-loader!sass-loader"
+      },
+      {
+          test: /\.css$/,
+          loader: "style-loader!css-loader"
       },
       {
         test: /\.json$/,
@@ -27,7 +30,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
-
   },
   devServer: {
     historyApiFallback: true,

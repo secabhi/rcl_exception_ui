@@ -1,0 +1,23 @@
+.TableActions {
+  // box-shadow: 1px 1px 1px 1px #ccc;
+  border: 1px solid #ccc;
+  padding: 15px;
+  display: flex;
+  margin-top: 50px;
+  .btn{
+    margin-right: 50px;
+    border: none;
+    &:hover{
+      text-decoration: none;
+    }
+    &:active{
+      border-color: #ccc;
+    }
+    &:visited{
+      border-color: #ccc;
+    }
+  }
+  .download{
+    margin-left: auto;
+  }
+}

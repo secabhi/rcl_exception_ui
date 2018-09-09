@@ -1,0 +1,22 @@
+.FormFilter {
+  text-align: left;
+  padding: 20px;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  margin: 15px 0px 0px 0px;
+  background-color: #EEEEEE;
+  .form-group{
+    display: inline-block;
+    width: 12%;
+    margin-right: 2%;
+    .form-control{
+      border-radius: 0px;
+    }
+    .control-label{
+      font-weight: 400;
+    }
+    .btn{
+      border-radius: 0px;
+    }
+  }
+
+}
