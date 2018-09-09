@@ -14,9 +14,14 @@ const mapDispatchToProps = (dispatch) => {
         initTableFilters:() =>{
           dispatch(initTableFilters())
             .then((resp) => {
-              console.log(resp);
+              if(resp.error){
+                
+              }
               dispatch(initTableFiltersSuccess(resp));
             })
+            .catch((error) => {
+                console.log(error);
+            });
         }
     };
 };
