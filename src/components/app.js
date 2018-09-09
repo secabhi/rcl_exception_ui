@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import TableGrid from './TableGrid/TableGrid.js';
-import TableFilters from './TableFilters/TableFilters.js';
+import TableFilters from './TableFilters/TableFiltersContainer.js';
 // import TableActions from './TableActions/TableActions.js';
 import {Grid, Row, Col} from 'react-bootstrap';
-import DashboardChart from './DashboardChart/DashboardChart.js';
+import DashboardChart from './DashboardChart/DashboardChartContainer.js';
 import './app.scss';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';

@@ -31,53 +31,29 @@ class Filters extends Component {
     }
 
     componentWillMount(){
-        this.setState({
-          categories: [
-              { Id: 'c1', Name: 'Category-1'},
-              { Id: 'c2', Name: 'Category-2'},
-              { Id: 'c3', Name: 'Category-3'},
-              { Id: 'c4', Name: 'Category-4'},
-              { Id: 'c5', Name: 'Category-5'},
-              { Id: 'c6', Name: 'Category-6'},
-              { Id: 'c7', Name: 'Category-7'},
-              { Id: 'c8', Name: 'Category-8'},
-              { Id: 'c9', Name: 'Category-9'},
-              { Id: 'c10', Name: 'Category-10'}
-          ],
-          rules: [
-                { Id: 'r1', Name: 'Rule-1'},
-                { Id: 'r2', Name: 'Rule-2'},
-                { Id: 'r3', Name: 'Rule-3'},
-                { Id: 'r4', Name: 'Rule-4'},
-                { Id: 'r5', Name: 'Rule-5'},
-                { Id: 'r6', Name: 'Rule-6'},
-                { Id: 'r7', Name: 'Rule-7'},
-                { Id: 'r8', Name: 'Rule-8'},
-                { Id: 'r9', Name: 'Rule-9'},
-                { Id: 'r10', Name: 'Rule-10'}
-            ],
-            labels: [
-                  { Id: 'r1', Name: 'label-1'},
-                  { Id: 'r2', Name: 'label-2'},
-                  { Id: 'r3', Name: 'label-3'},
-                  { Id: 'r4', Name: 'label-4'},
-                  { Id: 'r5', Name: 'label-5'},
-                  { Id: 'r6', Name: 'label-6'},
-                  { Id: 'r7', Name: 'label-7'},
-                  { Id: 'r8', Name: 'label-8'},
-                  { Id: 'r9', Name: 'label-9'},
-                  { Id: 'r10', Name: 'label-10'}
-              ]
-        });
+      this.props.initTableFilters();
+    }
+
+    componentDidUpdate(prevProps) {
+      console.log(this.props)
     }
 
     render() {
-        const { products, rules, labels, categories } = this.state;
+        const { dates=[], rules=[], labels=[], rulesubtypes=[], tables=[], attributes=[] } = this.props;
         return (
             <Form className='FormFilter' onChange={this.handleChange} onSubmit={this.handleSearch}>
-                <FormGroup controlId="asOfDateControl">
+                <FormGroup>
                   <ControlLabel>AS OF DATE</ControlLabel>
-                    <FormControl type="date" bsClass="form-control date-control" placeholder="Select date"/>
+                    <FormControl componentClass="select" placeholder="select" bsClass="form-control date-control" value={this.state.labelName} id="asOfDate" >
+                      <option value="-1">select</option>
+                      {
+                          dates.map((date, index) => {
+                              return(
+                                  <option value={date} key={'dates' + index}>{date}</option>
+                              )
+                          })
+                      }
+                    </FormControl>
                 </FormGroup>
                 <FormGroup controlId="labelNameControl">
                   <ControlLabel>LABEL NAME</ControlLabel>
@@ -110,7 +86,7 @@ class Filters extends Component {
                   <FormControl componentClass="select" placeholder="select" value={this.state.ruleSubType} id="ruleSubType">
                     <option value="select">select</option>
                     {
-                        rules.map((rule, index) => {
+                        rulesubtypes.map((rule, index) => {
                             return(
                                 <option value={rule.Id} key={'rulesubtypes' + index}>{rule.Name}</option>
                             )
@@ -123,7 +99,7 @@ class Filters extends Component {
                   <FormControl componentClass="select" placeholder="select" value={this.state.tableName} id="tableName">
                     <option value="select">select</option>
                     {
-                        categories.map((category, index) => {
+                        tables.map((category, index) => {
                             return(
                                 <option value={category.Id} key={'categories' + index}>{category.Name}</option>
                             )
@@ -136,7 +112,7 @@ class Filters extends Component {
                   <FormControl componentClass="select" placeholder="select" value={this.state.attribute} id="attribute">
                     <option value="select">select</option>
                     {
-                        categories.map((category, index) => {
+                        attributes.map((category, index) => {
                             return(
                                 <option value={category.Id} key={'attributes' + index}>{category.Name}</option>
                             )

@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { DCReducer } from '/components/DashboardChart/DashboardChartReducer.js';
-import { TFReducer } from '/components/TableFilters/TableFiltersReducer.js';
+import { DashboardChart } from '/components/DashboardChart/DashboardChartReducer.js';
+import { TableFilters } from '/components/TableFilters/TableFiltersReducer.js';
 
 const rootReducer = combineReducers({
-    DCReducer,
-    TFReducer,
+    DashboardChart,
+    TableFilters,
     routing: routerReducer
   });
 

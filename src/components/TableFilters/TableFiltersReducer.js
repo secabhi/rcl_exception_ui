@@ -1,67 +1,30 @@
-// import {
-//     START_LOADING_SPINNER,
-//     STOP_LOADING_SPINNER,
-//     PRE_FETCH_PROJECT,
-//     FETCH_PROJECT_SUCCESS,
-//     PUSH_ERROR_MESSAGE,
-//     POP_ERROR_MESSAGE,
-//     SET_VIEWPORT,
-//     CHECK_BREAKPOINT,
-// } from '/config/constants';
+import {
+  TABLE_FILTERS_INIT,
+  TABLE_FILTERS_INIT_SUCCESS
+} from '/config/constants';
 
 const defaultState = {
-    // height: window.innerHeight,
-    // pos: window.scrollY,
-    // viewport: checkBreakPoint(window.innerWidth),
-    // loadingProcesses: 0,
-    // pageTransition: false,
-    // errorMessages: [],
-    //
-    // // there will be times when we need to know if we started big and went small
-    // // eg, rotated ipad
-    // initialViewport: checkBreakPoint(window.innerWidth),
-    // width: app ? app.offsetWidth : window.innerWidth
-    //
-    //set default state
+  filterData: {},
+  asOfDate: '-1',
+  labelName: '-1',
+  ruleType: '-1',
+  ruleSubType: '-1',
+  tableName: '-1',
+  attribute: '-1'
 };
 
-const DCReducer = (state = defaultState, action) => {
+const TFReducer = (state = defaultState, action) => {
+    console.log(state);
+    console.log(action);
     switch (action.type) {
-
-        // initial app set up
-        case SET_VIEWPORT:
+        case TABLE_FILTERS_INIT:
+            console.log(action);
             return defaultState;
-
-        case START_LOADING_SPINNER:
-            return Object.assign({}, state, {
-                loadingProcesses: state.loadingProcesses += 1
-            });
-
-        case STOP_LOADING_SPINNER:
-            return Object.assign({}, state, {
-                loadingProcesses: state.loadingProcesses -= 1
-            });
-
-        case PRE_FETCH_PROJECT:
-            return Object.assign({}, state, {
-                pageTransition: true
-            });
-
-        case PUSH_ERROR_MESSAGE:
-            return {
-                ...state,
-                errorMessages: [action.payload].concat(state.errorMessages)
-            };
-
-        case POP_ERROR_MESSAGE:
-            return {
-                ...state,
-                errorMessages: state.errorMessages.slice(0, -1)
-            };
-
+        case TABLE_FILTERS_INIT_SUCCESS:
+            console.log(action)
         default:
             return state;
     }
 };
 
-export default DCReducer;
+export default TFReducer;

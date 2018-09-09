@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { initDashboard } from 'DashboardChartActions.js';
+import { initDashboard } from './DashboardChartActions.js';
 import DashboardChart from './DashboardChart.js';
 
 function mapStateToProps (state) {
