@@ -1,9 +1,8 @@
 {
     "endpoints": {
       "baseUrl": "http://www.mocky.io",
-
       "filterDataUrl": "/v2/5b966fea30000055000bd2b0",
       "searchDataUrl": "/v2/5b966ea73000002b000bd2a5"
-     
+      
     }
 }

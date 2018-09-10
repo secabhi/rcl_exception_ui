@@ -6,15 +6,21 @@ class Filters extends Component {
         super(props);
         this.handleSearch = this.handleSearch.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.postData = {};
     }
 
     handleSearch(e){
+        debugger;
       e.preventDefault();
-      this.props.handleSearch(this.props);
+      this.props.handleSearch(this.postData);
+      
     }
 
     handleChange(e){
+        debugger;
       this.props.handleChangeValue(e.target.id, e.target.value);
+      this.postData[e.target.id] = e.target.value;
+
     }
 
     componentWillMount(){

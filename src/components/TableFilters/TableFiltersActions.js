@@ -3,11 +3,11 @@ import Config from '/config/endpoints.json';
 import { TABLE_FILTERS_INIT, TABLE_FILTERS_INIT_SUCCESS, TABLE_FILTERS_UPDATE_VALUE, TABLE_FILTERS_SEARCH, TABLE_DATA_ASSIGN } from '/config/constants.js';
 
 export const initTableFilters = () => {
-    const request = axios.get(`${Config.endpoints.baseUrl + Config.endpoints.filterDataUrl }`);
-    return {
-        type: TABLE_FILTERS_INIT,
-        payload: request
-    };
+  const request = axios.get(`${Config.endpoints.baseUrl + Config.endpoints.filterDataUrl}`);
+  return {
+    type: TABLE_FILTERS_INIT,
+    payload: request
+  };
 };
 
 export const initTableFiltersSuccess = (resp) => {
@@ -40,25 +40,33 @@ export const searchForData = (values) => {
   //     payload: request
   // };
 
-  const request = axios.get(`${Config.endpoints.baseUrl + Config.endpoints.searchDataUrl }`);
-  return {
+  if (!values) {
+    const request = axios.get(`${Config.endpoints.baseUrl + Config.endpoints.searchDataUrl}`);
+    return {
       type: TABLE_FILTERS_SEARCH,
       payload: request
-  };
-
+    };
+  }
+  else {
+    const request = axios.post(`${Config.endpoints.baseUrl + Config.endpoints.searchDataUrl}`, values);
+    return {
+      type: TABLE_FILTERS_SEARCH,
+      payload: request
+    };
+  }
 }
 
 export const searchForDataSuccessful = (data) => {
   return {
-      type: TABLE_DATA_ASSIGN,
-      data
+    type: TABLE_DATA_ASSIGN,
+    data
   };
 
 }
 
 export const searchForDataError = (resp) => {
   return {
-      type: TABLE_DATA_CLEAR
+    type: TABLE_DATA_CLEAR
   };
 
 }
