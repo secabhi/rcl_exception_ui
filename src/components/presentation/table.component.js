@@ -21,7 +21,7 @@ export const TableComponent =(props)=> {
                   id: "asOfDate",
                   accessor: d => d.asOfDate,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["asOfDate"] }),
+                  matchSorter(rows, filter.value, { keys: ["asOfDate"] }),
                   filterAll: true
                   
                 },
@@ -30,7 +30,7 @@ export const TableComponent =(props)=> {
                   id: "labelName",
                   accessor: d => d.labelName,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["labelName"] }),
+                  matchSorter(rows, filter.value, { keys: ["labelName"] }),
                   filterAll: true
                 },
                 {
@@ -38,7 +38,7 @@ export const TableComponent =(props)=> {
                   id: "dqRuleId",
                   accessor: d => d.dqRuleId,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dqRuleId"] }),
+                  matchSorter(rows, filter.value, { keys: ["dqRuleId"] }),
                   filterAll: true
                 },
                 {
@@ -46,7 +46,7 @@ export const TableComponent =(props)=> {
                   id: "dq_entity",
                   accessor: d => d.dq_entity,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dq_entity"] }),
+                  matchSorter(rows, filter.value, { keys: ["dq_entity"] }),
                   filterAll: true
                 },
                 {
@@ -54,7 +54,7 @@ export const TableComponent =(props)=> {
                   id: "dqRuleType",
                   accessor: d => d.dqRuleType,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dqRuleType"] }),
+                  matchSorter(rows, filter.value, { keys: ["dqRuleType"] }),
                   filterAll: true
                 },
                 {
@@ -62,7 +62,7 @@ export const TableComponent =(props)=> {
                   id: "dqAttrVal",
                   accessor: d => d.dqAttrVal,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dqAttrVal"] }),
+                  matchSorter(rows, filter.value, { keys: ["dqAttrVal"] }),
                   filterAll: true
                 },
                 {
@@ -70,7 +70,7 @@ export const TableComponent =(props)=> {
                   id: "dqExcpMsg",
                   accessor: d => d.dqExcpMsg,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dqExcpMsg"] }),
+                  matchSorter(rows, filter.value, { keys: ["dqExcpMsg"] }),
                   filterAll: true
                 },
                 {
@@ -78,7 +78,7 @@ export const TableComponent =(props)=> {
                   id: "primaryKeySet",
                   accessor: d => d.primaryKeySet,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["primaryKeySet"] }),
+                  matchSorter(rows, filter.value, { keys: ["primaryKeySet"] }),
                   filterAll: true
                 },
                 {
@@ -86,7 +86,7 @@ export const TableComponent =(props)=> {
                   id: "tableName",
                   accessor: d => d.tableName,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["tableName"] }),
+                  matchSorter(rows, filter.value, { keys: ["tableName"] }),
                   filterAll: true
                 }
               ]
