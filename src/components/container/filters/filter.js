@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchfilterBegin, fetchfilterSuccess } from './filterAction';
-import { fetchchartBegin,fetchchartSuccess } from '../chart/chartAction';
-import { fetchtableBegin, fetchtableSuccess } from '../table/tableAction';
+import { fetchfilter } from './filterAction';
+import {FILTER_SUCCESS} from '../../../constants/constants';
+
+
 
 import { map } from 'underscore';
 
@@ -27,7 +28,7 @@ class Filters extends Component {
     }
 
     componentDidMount() {
-        this.setState({ data: this.props.data })
+       this.props.fetchfilterInvoker(FILTER_SUCCESS);
     }
 
     handleChange(e) {
@@ -39,7 +40,7 @@ class Filters extends Component {
     }
 
     render() {
-        const { data } = this.state;
+        const { filters } = this.props;
         return (
             <Form className='FormFilter' onChange={this.handleChange} onSubmit={this.handleSearch}>
                 <FormGroup controlId="asOfDateControl">
@@ -47,7 +48,7 @@ class Filters extends Component {
                     <FormControl type="date" bsClass="form-control date-control" placeholder="Select date" />
                 </FormGroup>
 
-                {map(data.data, (item, i) => {
+                {map(filters.data, (item, i) => {
                     return <FormGroup key={item.key} controlId="labelNameControl">
                         <ControlLabel>{item.display}</ControlLabel>
 
@@ -82,12 +83,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ 
-        fetchfilterBeginInvoker:fetchfilterBegin,
-        fetchfilterSuccessInvoker:fetchfilterSuccess,
-        fetchchartBeginInvoker:fetchchartBegin,
-        fetchchartSuccessInvoker:fetchchartSuccess,
-        fetchtableBeginInvoker:fetchtableBegin,
-        fetchtableSuccessInvoker:fetchtableSuccess
+        fetchfilterInvoker:fetchfilter
     }, dispatch);
 }
 

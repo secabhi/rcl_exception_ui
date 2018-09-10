@@ -1,28 +1,65 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { BrowserRouter as Router, Route, Link, browserHistory } from "react-router-dom";
-import { syncHistoryWithStore } from 'react-router-redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import promise from 'redux-promise';
-import RootComponent from './components/root';
-import reducers from './reducers/index';
+import React, { Component } from 'react';
 
-const enhancers = composeWithDevTools(
-    applyMiddleware(promise),
-    applyMiddleware(thunk)
-);
+import {Grid, Row, Col} from 'react-bootstrap';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+import { withStyles } from '@material-ui/core/styles';
 
-const store = createStore(reducers,enhancers);
+import DashboardChart from './components/container/chart/chart'
+import Filters from './components/container/filters/filter'
+import HeaderContainer from './components/container/header/header.component'
+import TableContainer from './components/container/table/table'
 
-const history = composeWithDevTools(browserHistory, store);
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={RootComponent} />
-    </Router>
-  </Provider>
-  , document.querySelector('.app'));
+class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      clicked : false
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(){
+    const clicked = !this.state.clicked;
+    this.setState({
+      clicked
+    })
+  }
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className="App">
+        <HeaderContainer />
+        <Grid className="GridApp" fluid={true}>
+          <Row>
+            <Col md={12}>
+              <Filters />
+            </Col>
+          </Row>
+          <Row className="">
+            <Col md={12}>
+              <DashboardChart />
+            </Col>
+          </Row>
+          <Row className="show-grid">
+            <Col md={12}>
+              <TableContainer />
+            </Col>
+          </Row>
+        </Grid>
+      </div>
+    );
+  }
+}
+
+export default withStyles(styles)(App);

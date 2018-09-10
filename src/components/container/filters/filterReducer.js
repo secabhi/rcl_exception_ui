@@ -1,4 +1,4 @@
-export default function(state = [], action) {
+export default (state = [], action) => {
   switch (action.type) {
     case "FILTER_BEGIN":
       return {
@@ -19,5 +19,9 @@ export default function(state = [], action) {
         filterData: action.payload,
         success: false
       };
+    default:
+      return {
+        ...state
+      };
   }
-}
+};

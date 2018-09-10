@@ -1,4 +1,5 @@
 import React from 'react';
+import {map} from 'underscore';
 
 export const Chart = (props) => {
     const {data} = this.props

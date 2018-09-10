@@ -1,6 +1,5 @@
 import React from "react";
 import { render } from "react-dom";
-import { makeData, Logo, Tips } from "../utils/utils";
 import { Grid, Row, Col } from 'react-bootstrap';
 
 export default class HeaderContainer extends React.Component {
@@ -9,7 +8,7 @@ export default class HeaderContainer extends React.Component {
         
     }
     render() {
-        const { data } = this.state;
+        
         return (
             <div className="headercmp">
                 <Row className="show-grid">

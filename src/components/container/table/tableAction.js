@@ -1,4 +1,7 @@
-export {
+import { callPostWebService, callGetWebService } from '../../../utils/https';
+import {api} from '../../../utils/api';
+
+import {
     TABLE_BEGIN,
     TABLE_SUCCESS,
     TABLE_FAILED
@@ -10,15 +13,41 @@ export {
     };
   };
   
-  export const fetchtableSuccess = () => {
+  export const fetchtableSuccess = (data) => {
     return {
-      type: TABLE_SUCCESS
+      type: TABLE_SUCCESS,
+      payload:data
     };
   };
   
-  export const fetchtableFail = () => {
+  export const fetchtableFail = (error) => {
     return {
-      type: TABLE_FAILED
+      type: TABLE_FAILED,
+      payload:error
     };
   };
-  
+
+
+  // API call
+
+  export const fetchtable = (type) => {
+    //dispatch(fetchtableBegin());
+    const URL = api.baseUrl+api.tableApi;
+    const params = {};
+    const request = callGetWebService(URL, params);
+    return (dispatch) => {
+        request.then(({
+            data
+        }) => {
+            switch (type) {
+                case TABLE_SUCCESS:
+                {
+                    dispatch(fetchtableSuccess(data));
+                    break;
+                }
+            }
+        }).catch(error => {
+            dispatch(fetchtableFail(error));
+        });
+    }
+}

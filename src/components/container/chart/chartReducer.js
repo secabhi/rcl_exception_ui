@@ -19,5 +19,9 @@ export default function(state = [], action) {
         chartData: action.payload,
         success: false
       };
+    default:
+      return {
+        ...state
+      };
   }
 }
