@@ -4,30 +4,17 @@ import './TableFilters.scss';
 class Filters extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-          date:'',
-          labelName: '-1',
-          ruleType: '-1',
-          ruleSubType: '-1',
-          tableName: '-1',
-          attribute: '-1'
-        }
         this.handleSearch = this.handleSearch.bind(this)
         this.handleChange = this.handleChange.bind(this)
-
     }
 
     handleSearch(e){
       e.preventDefault();
-      console.log(this.state);
-      alert('searching\n');
+      this.props.handleSearch(this.props);
     }
 
     handleChange(e){
-      console.log(e);
-      this.setState({
-        [e.target.id]: e.target.value
-      })
+      this.props.handleChangeValue(e.target.id, e.target.value);
     }
 
     componentWillMount(){
@@ -35,19 +22,25 @@ class Filters extends Component {
     }
 
     componentDidUpdate(prevProps) {
-      console.log(this.props)
     }
 
     render() {
-        const { dates=[], rules=[], labels=[], rulesubtypes=[], tables=[], attributes=[] } = this.props;
+        const { tableFilters, asOfDate, labelName, dqRuleType, dqSubRuleType, tableName, dqAttr } = this.props;
+        const asOfDateFilters = tableFilters.asOfDate ? tableFilters.asOfDate : [];
+        const labelFilters = tableFilters.labelName && tableFilters.labelName[asOfDate] ? tableFilters.labelName[asOfDate] : [];
+        const dqRuleTypeFilters = tableFilters.dqRuleType && tableFilters.dqRuleType[labelName] ? tableFilters.dqRuleType[labelName] : [];
+        const dqSubRuleTypeFilters = tableFilters.dqSubRuleType && tableFilters.dqSubRuleType[dqRuleType] ? tableFilters.dqSubRuleType[dqRuleType] : [];
+        const tableNameFilters = tableFilters.tableName && tableFilters.tableName[dqSubRuleType] ? tableFilters.tableName[dqSubRuleType] : [];
+        const dqAttrFilters = tableFilters.dqAttr && tableFilters.dqAttr[tableName] ? tableFilters.dqAttr[tableName] : [];
+
         return (
             <Form className='FormFilter' onChange={this.handleChange} onSubmit={this.handleSearch}>
                 <FormGroup>
                   <ControlLabel>AS OF DATE</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select" bsClass="form-control date-control" value={this.state.labelName} id="asOfDate" >
+                    <FormControl componentClass="select" placeholder="select" bsClass="form-control date-control" value={asOfDate} id="asOfDate" >
                       <option value="-1">select</option>
                       {
-                          dates.map((date, index) => {
+                          asOfDateFilters.map((date, index) => {
                               return(
                                   <option value={date} key={'dates' + index}>{date}</option>
                               )
@@ -55,66 +48,66 @@ class Filters extends Component {
                       }
                     </FormControl>
                 </FormGroup>
-                <FormGroup controlId="labelNameControl">
+                <FormGroup>
                   <ControlLabel>LABEL NAME</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={this.state.labelName} id="labelName" >
+                  <FormControl componentClass="select" placeholder="select" value={labelName} id="labelName" >
                     <option value="-1">select</option>
                     {
-                        labels.map((label, index) => {
+                        labelFilters.map((label, index) => {
                             return(
-                                <option value={label.Id} key={'rules' + index}>{label.Name}</option>
+                                <option value={label} key={'rules' + index}>{label}</option>
                             )
                         })
                     }
                   </FormControl>
                 </FormGroup>
-                <FormGroup controlId="ruleTypeControl">
+                <FormGroup>
                   <ControlLabel>RULE TYPE</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={this.state.ruleType} id="ruleType" >
+                  <FormControl componentClass="select" placeholder="select" value={dqRuleType} id="dqRuleType" >
                     <option value="-1">select</option>
                     {
-                        rules.map((rule, index) => {
+                        dqRuleTypeFilters.map((rule, index) => {
                             return(
-                                <option value={rule.Id} key={'rules' + index}>{rule.Name}</option>
+                                <option value={rule} key={'rules' + index}>{rule}</option>
                             )
                         })
                     }
                   </FormControl>
                 </FormGroup>
-                <FormGroup controlId="ruleSubTypeControl">
+                <FormGroup>
                   <ControlLabel>RULE SUB TYPE</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={this.state.ruleSubType} id="ruleSubType">
+                  <FormControl componentClass="select" placeholder="select" value={dqSubRuleType} id="dqSubRuleType">
                     <option value="select">select</option>
                     {
-                        rulesubtypes.map((rule, index) => {
+                        dqSubRuleTypeFilters.map((rule, index) => {
                             return(
-                                <option value={rule.Id} key={'rulesubtypes' + index}>{rule.Name}</option>
+                                <option value={rule} key={'rulesubtypes' + index}>{rule}</option>
                             )
                         })
                     }
                   </FormControl>
                 </FormGroup>
-                <FormGroup controlId="formControlsSelect">
+                <FormGroup>
                   <ControlLabel>TABLE NAME</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={this.state.tableName} id="tableName">
+                  <FormControl componentClass="select" placeholder="select" value={tableName} id="tableName">
                     <option value="select">select</option>
                     {
-                        tables.map((category, index) => {
+                        tableNameFilters.map((category, index) => {
                             return(
-                                <option value={category.Id} key={'categories' + index}>{category.Name}</option>
+                                <option value={category} key={'table' + index}>{category}</option>
                             )
                         })
                     }
                   </FormControl>
                 </FormGroup>
-                <FormGroup controlId="formControlsSelect">
+                <FormGroup>
                   <ControlLabel>ATTRIBUTE</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={this.state.attribute} id="attribute">
+                  <FormControl componentClass="select" placeholder="select" value={dqAttr} id="dqAttr">
                     <option value="select">select</option>
                     {
-                        attributes.map((category, index) => {
+                        dqAttrFilters.map((category, index) => {
                             return(
-                                <option value={category.Id} key={'attributes' + index}>{category.Name}</option>
+                                <option value={category} key={'attributes' + index}>{category}</option>
                             )
                         })
                     }

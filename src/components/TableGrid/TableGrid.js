@@ -12,81 +12,132 @@ import './TableGrid.scss';
 const CheckboxTable = checkboxHOC(ReactTable);
 
 class TableGrid extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      data: makeData()
-    };
+  constructor(props) {
+    super(props);
   }
+
+  componentWillMount(){
+    this.props.initTableData();
+  }
+
   render() {
-    const { data } = this.state;
+    const { tableGrid } = this.props;
     return (
       <div className="TableGrid">
         <ReactTable
-          data={data}
+          data={tableGrid}
           filterable
           defaultFilterMethod={(filter, row) =>
             String(row[filter.id]) === filter.value}
           columns={[
             {
               Header: "DATE",
-              accessor: "as_of_date",
+              accessor: "asOfDate",
               filterMethod: (filter, row) =>
                 row[filter.id].startsWith(filter.value) &&
                 row[filter.id].endsWith(filter.value)
             },
             {
-              Header: "DQ RULE ID",
+              Header: "LABEL NAME",
               accessor: "labelName",
               filterMethod: (filter, row) =>
                 row[filter.id].startsWith(filter.value) &&
                 row[filter.id].endsWith(filter.value)
             },
             {
+              Header: "DQ RULE ID",
+              accessor: "dqRuleId",
+              filterMethod: (filter, row) =>
+                row[filter.id].startsWith(filter.value) &&
+                row[filter.id].endsWith(filter.value)
+            },
+            {
               Header: "RULE TYPE",
-              accessor: "dq_rule_id",
+              accessor: "dqRuleType",
               filterMethod: (filter, row) =>
                 row[filter.id].startsWith(filter.value) &&
                 row[filter.id].endsWith(filter.value)
             },
             {
               Header: "RULE SUB TYPE",
-              accessor: "category",
+              accessor: "dqRuleSubType",
               filterMethod: (filter, row) =>
                 row[filter.id].startsWith(filter.value) &&
                 row[filter.id].endsWith(filter.value)
             },
             {
               Header: "TABLE NAME",
-              accessor: "progress",
+              accessor: "tableName",
               filterMethod: (filter, row) =>
                 row[filter.id].startsWith(filter.value) &&
                 row[filter.id].endsWith(filter.value)
             },
             {
               Header: "EXCEPTION MESSAGE",
-              accessor: "dq_entity",
+              accessor: "dqExcpMsg",
               filterMethod: (filter, row) =>
                 row[filter.id].startsWith(filter.value) &&
                 row[filter.id].endsWith(filter.value)
             },
             {
               Header: "ATTRIBUTE",
-              accessor: "dq_attr",
+              accessor: "dqAttr",
               filterMethod: (filter, row) =>
                 row[filter.id].startsWith(filter.value) &&
                 row[filter.id].endsWith(filter.value)
             },
             {
               Header: "ATTR VALUE",
-              accessor: "dq_attr_value",
+              accessor: "dqAttrValue",
               filterMethod: (filter, row) =>
                 row[filter.id].startsWith(filter.value) &&
                 row[filter.id].endsWith(filter.value)
             },
             {
               Header: "PRIMARY KEY",
-              accessor: "primarykey",
+              accessor: "primaryKeySet",
+              filterMethod: (filter, row) =>
+                row[filter.id].startsWith(filter.value) &&
+                row[filter.id].endsWith(filter.value)
+            },
+            {
+              Header: "PRIMARY VALUE",
+              accessor: "primaryValueSet",
+              filterMethod: (filter, row) =>
+                row[filter.id].startsWith(filter.value) &&
+                row[filter.id].endsWith(filter.value)
+            },
+            {
+              Header: "DQ RULE DESC",
+              accessor: "dqRuleDesc",
+              filterMethod: (filter, row) =>
+                row[filter.id].startsWith(filter.value) &&
+                row[filter.id].endsWith(filter.value)
+            },
+            {
+              Header: "MAPPING NAME",
+              accessor: "mappingName",
+              filterMethod: (filter, row) =>
+                row[filter.id].startsWith(filter.value) &&
+                row[filter.id].endsWith(filter.value)
+            },
+            {
+              Header: "LOAD DATE",
+              accessor: "loadDate",
+              filterMethod: (filter, row) =>
+                row[filter.id].startsWith(filter.value) &&
+                row[filter.id].endsWith(filter.value)
+            },
+            {
+              Header: "ERROR CODE",
+              accessor: "errorCode",
+              filterMethod: (filter, row) =>
+                row[filter.id].startsWith(filter.value) &&
+                row[filter.id].endsWith(filter.value)
+            },
+            {
+              Header: "ERROR MESSAGE",
+              accessor: "errorMessage",
               filterMethod: (filter, row) =>
                 row[filter.id].startsWith(filter.value) &&
                 row[filter.id].endsWith(filter.value)

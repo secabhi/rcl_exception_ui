@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import TableGrid from './TableGrid/TableGrid.js';
+import TableGrid from './TableGrid/TableGridContainer.js';
 import TableFilters from './TableFilters/TableFiltersContainer.js';
-// import TableActions from './TableActions/TableActions.js';
 import {Grid, Row, Col} from 'react-bootstrap';
 import DashboardChart from './DashboardChart/DashboardChartContainer.js';
 import './app.scss';
