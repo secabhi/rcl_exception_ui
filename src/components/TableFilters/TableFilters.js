@@ -10,7 +10,7 @@ class Filters extends Component {
     }
 
     handleSearch(e){
-        debugger;
+      debugger;
       e.preventDefault();
       this.props.handleSearch(this.postData);
       
