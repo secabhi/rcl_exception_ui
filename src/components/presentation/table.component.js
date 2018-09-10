@@ -18,10 +18,10 @@ export const TableComponent =(props)=> {
               columns: [
                 {
                   Header: "As of Date",
-                  id: "asofdate",
-                  accessor: d => d.asofdate,
+                  id: "asOfDate",
+                  accessor: d => d.asOfDate,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["asofdate"] }),
+                    matchSorter(rows, filter.value, { keys: ["asOfDate"] }),
                   filterAll: true
                   
                 },
