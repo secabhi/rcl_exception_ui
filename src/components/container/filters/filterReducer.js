@@ -9,16 +9,18 @@ export default (state = [], action) => {
       return {
         ...state,
         isLoading: false,
-        filterData: action.payload,
+        tableFilters: action.payload,
         success: true
       };
     case "FILTER_FAILED":
       return {
         ...state,
         isLoading: false,
-        filterData: action.payload,
+        tableFilters: action.payload,
         success: false
       };
+    case "TABLE_FILTERS_UPDATE_VALUE":
+      return {...state, [action.id]: action.value};  
     default:
       return {
         ...state

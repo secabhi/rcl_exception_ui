@@ -4,7 +4,8 @@ import {api} from '../../../utils/api';
 import {
     FILTER_BEGIN,
     FILTER_SUCCESS,
-    FILTER_FAILED
+    FILTER_FAILED,
+    TABLE_FILTERS_UPDATE_VALUE
 } from "../../../constants/constants";
 
 export const fetchfilterBegin = () => {
@@ -27,6 +28,14 @@ export const fetchfilterFail = (error) => {
     };
 };
 
+export const updateValue = (id, value) => {
+    return {
+      type: TABLE_FILTERS_UPDATE_VALUE,
+      id,
+      value
+    }
+}
+
 // Call Api
 
 export const fetchfilter = (type) => {
@@ -34,6 +43,28 @@ export const fetchfilter = (type) => {
     const URL = api.baseUrl+api.filterApi;
     const params = {};
     const request = callGetWebService(URL, params);
+    return (dispatch) => {
+        request.then(({
+            data
+        }) => {
+            switch (type) {
+                case FILTER_SUCCESS:
+                {
+                    dispatch(fetchfilterSuccess(data));
+                    break;
+                }
+            }
+        }).catch(error => {
+            dispatch(fetchfilterFail(error));
+        });
+    }
+}
+
+export const fetchpostfilter = (type,data) => {
+    //dispatch(fetchfilterBegin());
+    const URL = api.baseUrl+api.filterApi;
+    const params = {data:data};
+    const request = callPostWebService(URL, params);
     return (dispatch) => {
         request.then(({
             data
