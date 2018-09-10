@@ -49,7 +49,7 @@ class DashboardChart extends Component{
         <HorizontalBar
           data={data}
           width={300}
-          height={150}
+          height={200}
           options={{
             maintainAspectRatio: false,
             reponsive: true,
