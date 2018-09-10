@@ -1,0 +1,31 @@
+.FormFilter {
+    text-align: left;
+      padding: 20px;
+      margin: 15px 0px 0px 0px;
+      background-color: #ffffff;
+      margin: 10px 10px;
+      background: #e4e2e2;
+      border: 1px solid #cecece;
+    .form-group{
+      display: inline-block;
+      width: 11.3%;
+      text-align: center;
+      margin-right: 1%;
+      font-size: 12px;
+      .form-control{
+        border-radius: 0px;
+        font-size: 12px;
+      }
+      .control-label{
+        font-weight: 400;
+      }
+      .btn{
+      height: 32px;
+      border-radius: 0px;
+      line-height: 3px;
+      font-size: 16px;
+      }
+    }
+  
+  }
+  

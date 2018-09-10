@@ -1,4 +1,13 @@
 
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
-export default combineReducers({})
+import {chartReducer} from '../components/container/chart/chartReducer';
+import {filterReducer} from '../components/container/filters/filterReducer';
+import {tableReducer} from '../components/container/table/tableReducer';
+
+
+export default combineReducers({
+    chart:chartReducer,
+    filters:filterReducer,
+    table:tableReducer
+})

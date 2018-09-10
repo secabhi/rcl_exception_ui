@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import { Doughnut } from 'react-chartjs-2';
 import { map } from 'underscore';
 
@@ -27,4 +29,14 @@ class DashboardChart extends React.Component {
     }
 }
 
-export default DashboardChart;
+function mapStateToProps(state) {
+    return {
+        chart: state.charData
+    }
+}
+
+function mapDispatchToProps() {
+
+}
+
+export default connect(mapStateToProps)(DashboardChart);

@@ -3,20 +3,21 @@ import { render } from "react-dom";
 
 import { TableComponent } from '../../presentation/table.component';
 import { Grid, Row, Col } from 'react-bootstrap';
+import { connect } from "react-redux";
 
-export default class TableContainer extends React.Component {
+class TableContainer extends React.Component {
     constructor(props) {
         super(props);
        
     }
 
     render() {
-        const { tableData } = this.props;
+        const { table } = this.props;
         return (
             <div>
                 <Row className="show-grid">
                     <Col xs={12} style={{paddingTop:'20px'}}>
-                        <TableComponent data={tableData} />
+                        <TableComponent data={table} />
                     </Col>
                 </Row>
                 <br />
@@ -24,3 +25,18 @@ export default class TableContainer extends React.Component {
         );
     }
 }
+
+
+
+
+function mapStateToProps(state) {
+    return {
+        table: state.table
+    }
+}
+
+function mapDispatchToProps() {
+
+}
+
+export default connect(mapStateToProps)(TableContainer);

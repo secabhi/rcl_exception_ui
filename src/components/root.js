@@ -3,10 +3,15 @@ import TableGrid from './TableGrid/TableGridContainer.js';
 import TableFilters from './TableFilters/TableFiltersContainer.js';
 import {Grid, Row, Col} from 'react-bootstrap';
 import DashboardChart from './DashboardChart/DashboardChartContainer.js';
-import '';
+import './root.scss';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
+
+import {DashboardChart} from './container/chart/dashboard.component'
+import {Filters} from './container/filters/filter'
+import {HeaderContainer} from './container/header/header.component'
+import {TableContainer} from './container/table/table'
 
 const styles = theme => ({
   button: {
@@ -37,13 +42,11 @@ class RootComponent extends Component {
     const { classes } = this.props;
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Exceptions</h1>
-        </header>
+        <HeaderContainer />
         <Grid className="GridApp" fluid={true}>
           <Row>
             <Col md={12}>
-              <TableFilters />
+              <Filters />
             </Col>
           </Row>
           <Row className="">
@@ -53,7 +56,7 @@ class RootComponent extends Component {
           </Row>
           <Row className="show-grid">
             <Col md={12}>
-              <TableGrid />
+              <TableContainer />
             </Col>
           </Row>
         </Grid>

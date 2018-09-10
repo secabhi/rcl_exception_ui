@@ -1,121 +1,70 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, InputGroup, ControlLabel, FormControl, HelpBlock, Checkbox, Label} from 'react-bootstrap';
-import './TableFilters.scss';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchfilterBegin, fetchfilterSuccess } from './filterAction';
+import { fetchchartBegin,fetchchartSuccess } from '../chart/chartAction';
+import { fetchtableBegin, fetchtableSuccess } from '../table/tableAction';
+
+import { map } from 'underscore';
+
+import { Button, Form, FormGroup, InputGroup, ControlLabel, FormControl, HelpBlock, Checkbox, Label } from 'react-bootstrap';
+import './filter.scss';
 class Filters extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            data: [],
+            labelName: 'Select'
+        }
         this.handleSearch = this.handleSearch.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
 
-    handleSearch(e){
-      e.preventDefault();
-      this.props.handleSearch(this.props);
+    handleSearch(e) {
+        e.preventDefault();
+        console.log(this.state);
+        alert('searching\n');
     }
 
-    handleChange(e){
-      this.props.handleChangeValue(e.target.id, e.target.value);
+    componentDidMount() {
+        this.setState({ data: this.props.data })
     }
 
-    componentWillMount(){
-      this.props.initTableFilters();
-    }
-
-    componentDidUpdate(prevProps) {
+    handleChange(e) {
+        console.log(e);
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+        this.props.action();
     }
 
     render() {
-        const { tableFilters, asOfDate, labelName, dqRuleType, dqSubRuleType, tableName, dqAttr } = this.props;
-        const asOfDateFilters = tableFilters.asOfDate ? tableFilters.asOfDate : [];
-        const labelFilters = tableFilters.labelName && tableFilters.labelName[asOfDate] ? tableFilters.labelName[asOfDate] : [];
-        const dqRuleTypeFilters = tableFilters.dqRuleType && tableFilters.dqRuleType[labelName] ? tableFilters.dqRuleType[labelName] : [];
-        const dqSubRuleTypeFilters = tableFilters.dqSubRuleType && tableFilters.dqSubRuleType[dqRuleType] ? tableFilters.dqSubRuleType[dqRuleType] : [];
-        const tableNameFilters = tableFilters.tableName && tableFilters.tableName[dqSubRuleType] ? tableFilters.tableName[dqSubRuleType] : [];
-        const dqAttrFilters = tableFilters.dqAttr && tableFilters.dqAttr[tableName] ? tableFilters.dqAttr[tableName] : [];
-
+        const { data } = this.state;
         return (
             <Form className='FormFilter' onChange={this.handleChange} onSubmit={this.handleSearch}>
-                <FormGroup>
-                  <ControlLabel>AS OF DATE</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select" bsClass="form-control date-control" value={asOfDate} id="asOfDate" >
-                      <option value="-1">select</option>
-                      {
-                          asOfDateFilters.map((date, index) => {
-                              return(
-                                  <option value={date} key={'dates' + index}>{date}</option>
-                              )
-                          })
-                      }
-                    </FormControl>
+                <FormGroup controlId="asOfDateControl">
+                    <ControlLabel>AS OF DATE</ControlLabel>
+                    <FormControl type="date" bsClass="form-control date-control" placeholder="Select date" />
                 </FormGroup>
+
+                {map(data.data, (item, i) => {
+                    return <FormGroup key={item.key} controlId="labelNameControl">
+                        <ControlLabel>{item.display}</ControlLabel>
+
+                        <FormControl componentClass="select" placeholder="select" value={this.state.key} id={item.key} >
+                            {map(data[item.key], (val, i) => {
+                                return <option value={val} key={val + i}>{val}</option>
+                            })}
+                        </FormControl>
+
+                    </FormGroup>
+                })}
+
+
+
                 <FormGroup>
-                  <ControlLabel>LABEL NAME</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={labelName} id="labelName" >
-                    <option value="-1">select</option>
-                    {
-                        labelFilters.map((label, index) => {
-                            return(
-                                <option value={label} key={'rules' + index}>{label}</option>
-                            )
-                        })
-                    }
-                  </FormControl>
-                </FormGroup>
-                <FormGroup>
-                  <ControlLabel>RULE TYPE</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={dqRuleType} id="dqRuleType" >
-                    <option value="-1">select</option>
-                    {
-                        dqRuleTypeFilters.map((rule, index) => {
-                            return(
-                                <option value={rule} key={'rules' + index}>{rule}</option>
-                            )
-                        })
-                    }
-                  </FormControl>
-                </FormGroup>
-                <FormGroup>
-                  <ControlLabel>RULE SUB TYPE</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={dqSubRuleType} id="dqSubRuleType">
-                    <option value="select">select</option>
-                    {
-                        dqSubRuleTypeFilters.map((rule, index) => {
-                            return(
-                                <option value={rule} key={'rulesubtypes' + index}>{rule}</option>
-                            )
-                        })
-                    }
-                  </FormControl>
-                </FormGroup>
-                <FormGroup>
-                  <ControlLabel>TABLE NAME</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={tableName} id="tableName">
-                    <option value="select">select</option>
-                    {
-                        tableNameFilters.map((category, index) => {
-                            return(
-                                <option value={category} key={'table' + index}>{category}</option>
-                            )
-                        })
-                    }
-                  </FormControl>
-                </FormGroup>
-                <FormGroup>
-                  <ControlLabel>ATTRIBUTE</ControlLabel>
-                  <FormControl componentClass="select" placeholder="select" value={dqAttr} id="dqAttr">
-                    <option value="select">select</option>
-                    {
-                        dqAttrFilters.map((category, index) => {
-                            return(
-                                <option value={category} key={'attributes' + index}>{category}</option>
-                            )
-                        })
-                    }
-                  </FormControl>
-                </FormGroup>
-                <FormGroup>
-                  <Button bsStyle="primary" bsSize="large" block onClick={this.handleSearch}>
-                    Search
+                    <Button bsStyle="primary" bsSize="large" block onClick={this.handleSearch}>
+                        Search
                   </Button>
                 </FormGroup>
             </Form>
@@ -123,4 +72,23 @@ class Filters extends Component {
     }
 }
 
-export default Filters;
+
+
+function mapStateToProps(state) {
+    return {
+        filters: state.filters
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ 
+        fetchfilterBeginInvoker:fetchfilterBegin,
+        fetchfilterSuccessInvoker:fetchfilterSuccess,
+        fetchchartBeginInvoker:fetchchartBegin,
+        fetchchartSuccessInvoker:fetchchartSuccess,
+        fetchtableBeginInvoker:fetchtableBegin,
+        fetchtableSuccessInvoker:fetchtableSuccess
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);
