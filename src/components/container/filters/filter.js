@@ -48,13 +48,13 @@ class Filters extends Component {
                     <FormControl type="date" bsClass="form-control date-control" placeholder="Select date" />
                 </FormGroup>
 
-                {map(filters.data, (item, i) => {
-                    return <FormGroup key={item.key} controlId="labelNameControl">
-                        <ControlLabel>{item.display}</ControlLabel>
+                {map(filters.filterData, (val, key) => {
+                    return <FormGroup key={key} controlId="labelNameControl">
+                        <ControlLabel>{key}</ControlLabel>
 
-                        <FormControl componentClass="select" placeholder="select" value={this.state.key} id={item.key} >
-                            {map(data[item.key], (val, i) => {
-                                return <option value={val} key={val + i}>{val}</option>
+                        <FormControl componentClass="select" placeholder="select" value={this.state.key} id={key} >
+                            {map(val, (value, i) => {
+                                return <option value={value} key={value + i}>{value}</option>
                             })}
                         </FormControl>
 

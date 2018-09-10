@@ -15,15 +15,17 @@ export const fetchchartBegin = () => {
   };
 };
 
-export const fetchchartSuccess = () => {
+export const fetchchartSuccess = (data) => {
   return {
-    type: CHART_SUCCESS
+    type: CHART_SUCCESS,
+    payload:data
   };
 };
 
-export const fetchchartFail = () => {
+export const fetchchartFail = (error) => {
   return {
-    type: CHART_FAILED
+    type: CHART_FAILED,
+    payload:error
   };
 };
 

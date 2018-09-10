@@ -84,10 +84,14 @@ export function callGetWebService(url, params) {
     console.log("Header: ", header);
     console.log("Params: ", params);
     console.log('------------------------------------------------');
+    axios.transformResponse = axios.defaults.transformResponse.concat((data) => {
+        console.log(data) // this should now be JSON
+    })
     var requestObject = axios.get(url, params, header);
     return new Promise(
         function (resolve, reject) {
             requestObject.then((data) => {
+                debugger;
                 console.log('----------------Success Response----------------');
                 console.log("Response Status: ", data.status);
                 console.log("Response Data: ", data.data);

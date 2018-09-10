@@ -18,12 +18,13 @@ export const TableComponent =(props)=> {
               columns: [
                 {
                   Header: "As of Date",
-                  accessor: "as_of_date",
-                  filterMethod:function (filter, row){
-                    debugger;
-                   return row[filter.id].startsWith(filter.value) ||
-                    row[filter.id].endsWith(filter.value)
-                }},
+                  id: "asofdate",
+                  accessor: d => d.asofdate,
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["asofdate"] }),
+                  filterAll: true
+                  
+                },
                 {
                   Header: "Label Name",
                   id: "labelName",
@@ -34,10 +35,10 @@ export const TableComponent =(props)=> {
                 },
                 {
                   Header: "DQ Rule Id",
-                  id: "dq_rule_id",
-                  accessor: d => d.dq_rule_id,
+                  id: "dqRuleId",
+                  accessor: d => d.dqRuleId,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dq_rule_id"] }),
+                    matchSorter(rows, filter.value, { keys: ["dqRuleId"] }),
                   filterAll: true
                 },
                 {
@@ -49,43 +50,43 @@ export const TableComponent =(props)=> {
                   filterAll: true
                 },
                 {
-                  Header: "DQ Attribute",
-                  id: "dq_attr",
-                  accessor: d => d.dq_attr,
+                  Header: "DQ Rule type",
+                  id: "dqRuleType",
+                  accessor: d => d.dqRuleType,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dq_attr"] }),
+                    matchSorter(rows, filter.value, { keys: ["dqRuleType"] }),
                   filterAll: true
                 },
                 {
                   Header: "DQ Attribute Value",
-                  id: "dq_attr_value",
-                  accessor: d => d.dq_attr_value,
+                  id: "dqAttrVal",
+                  accessor: d => d.dqAttrVal,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dq_attr_value"] }),
+                    matchSorter(rows, filter.value, { keys: ["dqAttrVal"] }),
                   filterAll: true
                 },
                 {
                   Header: "DQ Exception Msg",
-                  id: "dq_excp_msg",
-                  accessor: d => d.dq_excp_msg,
+                  id: "dqExcpMsg",
+                  accessor: d => d.dqExcpMsg,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["dq_excp_msg"] }),
+                    matchSorter(rows, filter.value, { keys: ["dqExcpMsg"] }),
                   filterAll: true
                 },
                 {
                   Header: "Primary Key",
-                  id: "primarykey",
-                  accessor: d => d.primarykey,
+                  id: "primaryKeySet",
+                  accessor: d => d.primaryKeySet,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["primarykey"] }),
+                    matchSorter(rows, filter.value, { keys: ["primaryKeySet"] }),
                   filterAll: true
                 },
                 {
-                  Header: "Category",
-                  id: "category",
-                  accessor: d => d.category,
+                  Header: "Table Name",
+                  id: "tableName",
+                  accessor: d => d.tableName,
                   filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["category"] }),
+                    matchSorter(rows, filter.value, { keys: ["tableName"] }),
                   filterAll: true
                 }
               ]

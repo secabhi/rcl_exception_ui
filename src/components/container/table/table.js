@@ -21,12 +21,12 @@ class TableContainer extends React.Component {
     }
 
     render() {
-        const { table } = this.props;
+        const { tableData } = this.props.table;
         return (
             <div>
                 <Row className="show-grid">
                     <Col xs={12} style={{paddingTop:'20px'}}>
-                        {table.length >0 ?<TableComponent data={table} />:null}
+                        {tableData ?<TableComponent data={tableData} />:null}
                     </Col>
                 </Row>
                 <br />

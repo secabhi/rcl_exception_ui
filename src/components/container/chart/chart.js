@@ -12,6 +12,9 @@ import { fetchchart } from '../chart/chartAction';
 class DashboardChart extends React.Component {
     constructor() {
         super();
+        this.state={
+            data:[]
+        }
 
     }
 
@@ -20,17 +23,22 @@ class DashboardChart extends React.Component {
         //$('.block').tooltip();
     }
 
+    // componentWillReceiveProps(nextprops){
+
+    //     this.setState({data:})
+    // }
+
     render() {
-        const { chart } = this.props;
+        const { chartData } = this.props.chart;
         return (
-            <div>{chart?<Chart data={chart} />:null}</div>
+            <div>{chartData?<Chart data={chartData} />:null}</div>
         );
     }
 }
 
 function mapStateToProps(state) {
     return {
-        chart: state.charData
+        chart: state.chart
     }
 }
 

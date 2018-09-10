@@ -2,7 +2,7 @@ import React from 'react';
 import {map} from 'underscore';
 
 export const Chart = (props) => {
-    const {data} = this.props
+    const {data} = props
     return (
         <div className="barChart-border">
             <div className="barChart-heading">
