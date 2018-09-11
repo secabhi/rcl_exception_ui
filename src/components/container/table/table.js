@@ -13,11 +13,11 @@ import { fetchtable } from '../table/tableAction';
 class TableContainer extends React.Component {
     constructor(props) {
         super(props);
-       
+
     }
 
     componentDidMount(){
-        this.props.fetchtableInvoker(TABLE_SUCCESS);
+        // this.props.fetchtableInvoker(TABLE_SUCCESS);
     }
 
     render() {
@@ -45,7 +45,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ 
+    return bindActionCreators({
         fetchtableInvoker:fetchtable
     }, dispatch);
 }

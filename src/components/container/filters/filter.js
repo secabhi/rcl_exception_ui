@@ -17,14 +17,13 @@ class Filters extends Component {
     }
 
     handleSearch(e) {
-        debugger;
+
         e.preventDefault();
         //this.props.handleSearch(this.postData);
-        this.props.fetchPostfilterInvoker(FILTER_SUCCESS, data);
+        this.props.fetchPostfilterInvoker(FILTER_SUCCESS);
     }
 
     handleChange(e) {
-        debugger;
         this.props.handleChangeValueInvoker(e.target.id, e.target.value);
         this.postData[e.target.id] = e.target.value;
 
@@ -38,14 +37,14 @@ class Filters extends Component {
     }
 
     render() {
-    
+
         return (
 
-            <div>{this.props.tableFilters?<FilterComponent 
-                tableFilters={this.props.tableFilters} 
+            <div>{this.props.tableFilters?<FilterComponent
+                {...this.props}
                 handleSearch={this.handleSearch}
                 handleChange={this.handleChange}/>:null}</div>
-   
+
         );
     }
 }

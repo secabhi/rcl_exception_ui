@@ -39,8 +39,8 @@ body {
   color: #020202;
   line-height: 1em;
   margin: 0px;
-  margin-top: -8px; 
-    
+  margin-top: -8px;
+
 }
 h3, h6 {
 	margin: 0;
@@ -63,9 +63,9 @@ figure {
 	padding-left: 30px;
 	width: 112%;
 }
-.row {
-	margin-bottom: 1.5em;
-}
+/* .row {
+	margin-bottom: 1em;
+} */
 @keyframes expand {
 	from {width: 0%;}
 	to {width: 100%;}

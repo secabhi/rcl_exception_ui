@@ -41,14 +41,14 @@ class App extends Component {
       <div className="App">
         <HeaderContainer />
         <Grid className="GridApp" fluid={true}>
-          <Row>
-            <Col md={12}>
-              <Filters />
-            </Col>
-          </Row>
           <Row className="">
             <Col md={12}>
               <DashboardChart />
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12}>
+              <Filters />
             </Col>
           </Row>
           <Row className="show-grid">

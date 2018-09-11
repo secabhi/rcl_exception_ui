@@ -1,4 +1,8 @@
-export default (state = [], action) => {
+const defaultState = {
+  tableFilters:{}, asOfDate: '-1', labelName:'-1', dqRuleType: '-1', dqSubRuleType:'-1', tableName: '-1', dqAttr: '-1'
+}
+
+export default (state = defaultState, action) => {
   switch (action.type) {
     case "FILTER_BEGIN":
       return {
@@ -20,7 +24,7 @@ export default (state = [], action) => {
         success: false
       };
     case "TABLE_FILTERS_UPDATE_VALUE":
-      return {...state, [action.id]: action.value};  
+      return {...state, [action.id]: action.value};
     default:
       return {
         ...state

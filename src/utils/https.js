@@ -19,7 +19,9 @@ export function callPostWebService(url, params) {
     axios.transformResponse = axios.defaults.transformResponse.concat((data) => {
         console.log(data) // this should now be JSON
     })
-    var requestObject = axios.post(url, params, header);
+    // var requestObject = axios.post(url, params, header);
+    var requestObject = axios.get(url, params, header);
+
     //debugger;
     return new Promise(
         function (resolve, reject) {
@@ -79,11 +81,6 @@ export function callGetWebService(url, params) {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
     };
-    console.log("Request Type: GET");
-    console.log("URL: ", url);
-    console.log("Header: ", header);
-    console.log("Params: ", params);
-    console.log('------------------------------------------------');
     axios.transformResponse = axios.defaults.transformResponse.concat((data) => {
         console.log(data) // this should now be JSON
     })
@@ -91,18 +88,9 @@ export function callGetWebService(url, params) {
     return new Promise(
         function (resolve, reject) {
             requestObject.then((data) => {
-                debugger;
-                console.log('----------------Success Response----------------');
-                console.log("Response Status: ", data.status);
-                console.log("Response Data: ", data.data);
-                console.log('------------------------------------------------');
+                // debugger;
                 resolve(data);
             }, (error) => {
-                //alert('test');
-                console.log('----------------Error Response------------------');
-                console.log("Response Status: ", error.status);
-                console.log("Response Data: ", error.data);
-                console.log('------------------------------------------------');
                 // store.dispatch({
                 //     type: 'START_SPINNER',
                 //     payload:false,

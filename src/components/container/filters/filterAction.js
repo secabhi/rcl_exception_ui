@@ -1,6 +1,6 @@
 import { callPostWebService, callGetWebService } from '../../../utils/https';
 import {api} from '../../../utils/api';
-
+import { fetchtableSuccess } from '../table/tableAction.js';
 import {
     FILTER_BEGIN,
     FILTER_SUCCESS,
@@ -62,8 +62,9 @@ export const fetchfilter = (type) => {
 
 export const fetchpostfilter = (type,data) => {
     //dispatch(fetchfilterBegin());
-    const URL = api.baseUrl+api.filterApi;
-    const params = {data:data};
+    const URL = api.baseUrl+api.tableApi;
+    // const params = {data:data};
+    const params = {};
     const request = callPostWebService(URL, params);
     return (dispatch) => {
         request.then(({
@@ -72,7 +73,7 @@ export const fetchpostfilter = (type,data) => {
             switch (type) {
                 case FILTER_SUCCESS:
                 {
-                    dispatch(fetchfilterSuccess(data));
+                    dispatch(fetchtableSuccess(data));
                     break;
                 }
             }
