@@ -14,7 +14,7 @@ export const TableComponent =(props)=> {
             String(row[filter.id]) === filter.value}
           columns={[
             {
-              Header: "RCL Exception",
+              Header: "",
               columns: [
                 {
                   Header: "As of Date",
@@ -82,11 +82,27 @@ export const TableComponent =(props)=> {
                   filterAll: true
                 },
                 {
-                  Header: "Table Name",
-                  id: "tableName",
-                  accessor: d => d.tableName,
+                  Header: "Primary Value",
+                  id: "primaryValueSet",
+                  accessor: d => d.primaryValueSet,
                   filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["tableName"] }),
+                  matchSorter(rows, filter.value, { keys: ["primaryValueSet"] }),
+                  filterAll: true
+                },
+                {
+                  Header: "DQ Sub Rule Type",
+                  id: "dqRuleSubType",
+                  accessor: d => d.dqRuleSubType,
+                  filterMethod: (filter, rows) =>
+                  matchSorter(rows, filter.value, { keys: ["dqRuleSubType"] }),
+                  filterAll: true
+                },
+                {
+                  Header: "Load Date",
+                  id: "loadDate",
+                  accessor: d => d.loadDate,
+                  filterMethod: (filter, rows) =>
+                  matchSorter(rows, filter.value, { keys: ["loadDate"] }),
                   filterAll: true
                 }
               ]

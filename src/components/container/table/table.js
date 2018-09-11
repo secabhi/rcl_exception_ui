@@ -17,7 +17,7 @@ class TableContainer extends React.Component {
     }
 
     componentDidMount(){
-        // this.props.fetchtableInvoker(TABLE_SUCCESS);
+         this.props.fetchtableInvoker(TABLE_SUCCESS);
     }
 
     render() {
@@ -25,7 +25,7 @@ class TableContainer extends React.Component {
         return (
             <div>
                 <Row className="show-grid">
-                    <Col xs={12} style={{paddingTop:'20px'}}>
+                    <Col xs={12} style={{padding:'10px'}}>
                         {tableData ?<TableComponent data={tableData} />:null}
                     </Col>
                 </Row>

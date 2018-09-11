@@ -52,7 +52,7 @@ class App extends Component {
             </Col>
           </Row>
           <Row className="show-grid">
-            <Col md={12}>
+            <Col md={12} style={{padding: '10px 0px 10px 0px'}}>
               <TableContainer />
             </Col>
           </Row>

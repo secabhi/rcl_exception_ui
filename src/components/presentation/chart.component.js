@@ -5,9 +5,7 @@ export const Chart = (props) => {
     const {data} = props
     return (
         <div className="barChart-border">
-            <div className="barChart-heading">
-                <h5>Exceptions</h5>
-            </div>
+            
             <div className="DashboardChart">
                 <figure className="chart-subhead">
                     <div className="graphic">

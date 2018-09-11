@@ -20,7 +20,7 @@ class Filters extends Component {
 
         e.preventDefault();
         //this.props.handleSearch(this.postData);
-        this.props.fetchPostfilterInvoker(FILTER_SUCCESS);
+        this.props.fetchPostfilterInvoker(FILTER_SUCCESS,this.postData);
     }
 
     handleChange(e) {

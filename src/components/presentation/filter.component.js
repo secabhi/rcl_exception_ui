@@ -92,7 +92,7 @@ export const FilterComponent = (props) => {
                     }
                 </FormControl>
             </FormGroup>
-            <FormGroup>
+            <FormGroup style={{right: '70px' ,top: '50px',position: 'absolute'}}>
                 <Button bsStyle="primary" bsSize="large" block onClick={props.handleSearch}>
                     Search
           </Button>

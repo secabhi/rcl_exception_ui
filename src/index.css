@@ -55,13 +55,11 @@ h6 {
     color: #919191;
 }
 figure {
-	margin: 0 auto;
-	max-width: 1100px;
-	position: relative;
+	margin: 1em 40px;
 }
 .graphic {
 	padding-left: 30px;
-	width: 112%;
+	width: 100%;
 }
 /* .row {
 	margin-bottom: 1em;
@@ -131,9 +129,9 @@ figure {
     position: relative;
 }
 .chart-subhead{
-    margin-left: 50px;
     position: relative;
-    top: 50px;
+    top: 35px;
+    width: 97%;
 }
 
 .value {

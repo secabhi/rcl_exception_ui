@@ -61,11 +61,12 @@ export const fetchfilter = (type) => {
 }
 
 export const fetchpostfilter = (type,data) => {
+    debugger;
     //dispatch(fetchfilterBegin());
     const URL = api.baseUrl+api.tableApi;
     // const params = {data:data};
     const params = {};
-    const request = callPostWebService(URL, params);
+    const request = callPostWebService(URL, data);
     return (dispatch) => {
         request.then(({
             data

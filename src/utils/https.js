@@ -20,7 +20,7 @@ export function callPostWebService(url, params) {
         console.log(data) // this should now be JSON
     })
     // var requestObject = axios.post(url, params, header);
-    var requestObject = axios.get(url, params, header);
+    var requestObject = axios.post(url, params, header);
 
     //debugger;
     return new Promise(
