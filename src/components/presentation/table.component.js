@@ -5,112 +5,92 @@ import matchSorter from 'match-sorter'
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-export const TableComponent =(props)=> {
-  return(
+export const TableComponent = (props) => {
+  return (
     <ReactTable
-          data={props.data}
-          filterable
-          defaultFilterMethod={(filter, row) =>
-            String(row[filter.id]) === filter.value}
-          columns={[
+      manual // Forces table not to paginate or sort automatically, so we can handle it server-side
+      data={props.data}
+      pages={props.pages} // Display the total number of pages
+      loading={props.loading} // Display the loading overlay when we need it
+      onFetchData={props.fetchData} // Request new data when things change
+      filterable
+      defaultPageSize={10}
+      className="-striped -highlight"
+      columns={[
+        {
+          Header: "",
+          columns: [
             {
-              Header: "",
-              columns: [
-                {
-                  Header: "As of Date",
-                  id: "asOfDate",
-                  accessor: d => d.asOfDate,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["asOfDate"] }),
-                  filterAll: true
-                  
-                },
-                {
-                  Header: "Label Name",
-                  id: "labelName",
-                  accessor: d => d.labelName,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["labelName"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "DQ Rule Id",
-                  id: "dqRuleId",
-                  accessor: d => d.dqRuleId,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["dqRuleId"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "DQ Entity",
-                  id: "dq_entity",
-                  accessor: d => d.dq_entity,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["dq_entity"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "DQ Rule type",
-                  id: "dqRuleType",
-                  accessor: d => d.dqRuleType,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["dqRuleType"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "DQ Attribute Value",
-                  id: "dqAttrVal",
-                  accessor: d => d.dqAttrVal,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["dqAttrVal"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "DQ Exception Msg",
-                  id: "dqExcpMsg",
-                  accessor: d => d.dqExcpMsg,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["dqExcpMsg"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "Primary Key",
-                  id: "primaryKeySet",
-                  accessor: d => d.primaryKeySet,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["primaryKeySet"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "Primary Value",
-                  id: "primaryValueSet",
-                  accessor: d => d.primaryValueSet,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["primaryValueSet"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "DQ Sub Rule Type",
-                  id: "dqRuleSubType",
-                  accessor: d => d.dqRuleSubType,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["dqRuleSubType"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "Load Date",
-                  id: "loadDate",
-                  accessor: d => d.loadDate,
-                  filterMethod: (filter, rows) =>
-                  matchSorter(rows, filter.value, { keys: ["loadDate"] }),
-                  filterAll: true
-                }
-              ]
+              Header: "As of Date",
+              id: "asOfDate",
+              accessor: d => d.asOfDate
+
+
+            },
+            {
+              Header: "Label Name",
+              id: "labelName",
+              accessor: d => d.labelName,
+
+            },
+            {
+              Header: "DQ Rule Id",
+              id: "dqRuleId",
+              accessor: d => d.dqRuleId,
+
+            },
+            {
+              Header: "DQ Entity",
+              id: "dq_entity",
+              accessor: d => d.dq_entity,
+
+            },
+            {
+              Header: "DQ Rule type",
+              id: "dqRuleType",
+              accessor: d => d.dqRuleType,
+
+            },
+            {
+              Header: "DQ Attribute Value",
+              id: "dqAttrVal",
+              accessor: d => d.dqAttrVal,
+
+            },
+            {
+              Header: "DQ Exception Msg",
+              id: "dqExcpMsg",
+              accessor: d => d.dqExcpMsg,
+
+            },
+            {
+              Header: "Primary Key",
+              id: "primaryKeySet",
+              accessor: d => d.primaryKeySet,
+
+            },
+            {
+              Header: "Primary Value",
+              id: "primaryValueSet",
+              accessor: d => d.primaryValueSet,
+
+            },
+            {
+              Header: "DQ Sub Rule Type",
+              id: "dqRuleSubType",
+              accessor: d => d.dqRuleSubType,
+
+            },
+            {
+              Header: "Load Date",
+              id: "loadDate",
+              accessor: d => d.loadDate,
+
             }
-          ]}
-          defaultPageSize={10}
-          className="-striped -highlight"
-        />
+          ]
+        }
+      ]}
+    />
 
   )
 }

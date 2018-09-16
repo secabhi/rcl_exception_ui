@@ -30,11 +30,11 @@ import {
 
   // API call
 
-  export const fetchtable = (type) => {
+  export const fetchtable = (type,params={}) => {
     //dispatch(fetchtableBegin());
     const URL = api.baseUrl+api.tableApi;
-    const params = {};
-    const request = callGetWebService(URL, params);
+    
+    const request = callPostWebService(URL, params);
     return (dispatch) => {
         request.then(({
             data
