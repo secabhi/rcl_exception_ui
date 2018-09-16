@@ -9,6 +9,8 @@ import DashboardChart from './components/container/chart/chart'
 import Filters from './components/container/filters/filter'
 import HeaderContainer from './components/container/header/header.component'
 import TableContainer from './components/container/table/table'
+import PageHeader from './components/container/PageHeader/pageHeader.js';
+import TableSubHeader from './components/container/TableSubHeader/TableSubHeader.js';
 
 const styles = theme => ({
   button: {
@@ -41,9 +43,19 @@ class App extends Component {
       <div className="App">
         <HeaderContainer />
         <Grid className="GridApp" fluid={true}>
+          <Row className="pageHeader">
+            <Col md={12}>
+              <PageHeader />
+            </Col>
+          </Row>
           <Row className="">
             <Col md={12}>
               <DashboardChart />
+            </Col>
+          </Row>
+          <Row className="tablesubheader">
+            <Col md={12}>
+              <TableSubHeader />
             </Col>
           </Row>
           <Row>

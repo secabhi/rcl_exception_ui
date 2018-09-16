@@ -1,0 +1,35 @@
+.pageHeader{
+  background-color: #fff;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  padding: 15px;
+  .breadcrumb{
+    background-color: #fff;
+    padding: 8px 15px 8px 0px;
+    margin-bottom: 5px;
+    a{
+      color: #7d7777;
+      font-weight: 400;
+      &:hover{
+        text-decoration: none;
+      }
+      &:clicked{
+        text-decoration: none;
+      }
+    }
+  }
+  .sub-breadcrumb{
+    font-size: 24px;
+    color: #0b68b8;
+  }
+  .breadcrumb>li+li:before{
+    content: ">\00a0";
+  }
+  .css-1aya2g8{
+    border-radius: 0px;
+  }
+  .select-heading{
+    color: #7d7777;
+    padding-top: 10px;
+    margin-bottom: 5px;
+  }
+}
